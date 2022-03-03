@@ -25,17 +25,16 @@
  */
 
 /* LORA APRS PROTOCOL OE is ASCII MODE, ELSE USE STANDARD AX25 BINARY PACKET */
-#define LORAPRS_OE_STYLE 0
+#define LORAPRS_OE_STYLE 1
 
 /* BEACON CONFIG */
-#define MYCALL   "VE2YAG-4"
-#define BCN_DEST "APZDG2"
-#define BCN_PATH "WIDE1-1"			// Set to "" to disable it.
+#define MYCALL   "VE2YAG-9"
+#define BCN_DEST "APRS"
+#define BCN_PATH "-1"			// Set to "" to disable, -1 -2 or -3 for SSID digi and "WIDE2-2" for std path
 #define BCN_POSITION_INTERVAL 1		/* in minute */
 #define BCN_STATUS_INTERVAL   15	/* in minute */
 #define BCN_SYMBOL_TABLE 'L'  /* L displayed for overlay */
 #define BCN_SYMBOL_ID    'k'  /* k is SUV */
-#define BCN_PATH         0    /* Set to 1 if use PATH field, else use -1 SSID digipeating(-7 bytes) */
 #define BCN_ALTITUDE     0    /* Set to 1 if transmit altitude (+4 bytes) */
 #define BCN_COMMENT      0    /* Set to 1 for comment transmit */
 #define BCN_COMMENT_TEXT "LorAPRS beacon test."

@@ -132,15 +132,13 @@ void Send_lora_aprs() {
     if(long_deg<10 || long_deg>99) dest[4]+=32;	// Set longitude offset bit if <10 or >99 degree
     if(nav.longitude<0) dest[5]+=32;			// Insert EAST hemisphere bit  
 
-	  /* ADD PATH OR DEST SSID FOR DIGIPEATING */
-#if BCN_PATH==1
-    if(strlen_P(path)) {
-        strcat_P(p, PSTR(",")); 
-        strcat_P(p, path);
+	/* ADD PATH OR DEST SSID FOR DIGIPEATING */
+    uint8_t len = strlen(BCN_PATH);
+    switch(len) {
+		case 0:	break;							// No path
+		case 2: strcat(p, BCN_PATH); break;		// SSID path
+        default: strcat_P(p, PSTR(",")); strcat(p, BCN_PATH); break;	// Standard path           
     }
-#else
-        strcat_P(p, PSTR("-1")); 
-#endif
     
     /* ADDRESS END AND MIC-E PACKET TYPE */
     strcat_P(p, PSTR(":`"));           
@@ -256,9 +254,11 @@ void loop() {
         strcpy(p, MYCALL);
         strcat_P(p, PSTR(">"));
         strcat(p, BCN_DEST);
-        if(strlen(BCN_PATH)) {
-            strcat_P(p, PSTR(",")); 
-            strcat(p, BCN_PATH);
+        uint8_t len = strlen(BCN_PATH);
+        switch(len) {
+			case 0:	break;							// No path
+			case 2: strcat(p, BCN_PATH); break;		// SSID path
+            default: strcat_P(p, PSTR(",")); strcat(p, BCN_PATH); break;	// Standard path           
         }
         strcat_P(p, PSTR(":"));           
         if(nav.fix>=1) {
