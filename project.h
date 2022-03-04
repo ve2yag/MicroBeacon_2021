@@ -28,7 +28,7 @@
 #define LORAPRS_OE_STYLE 1
 
 /* BEACON CONFIG */
-#define MYCALL   "VE2YAG-9"
+#define MYCALL   "NOCALL"
 #define BCN_DEST "APRS"
 #define BCN_PATH "-1"			// Set to "" to disable, -1 -2 or -3 for SSID digi and "WIDE2-2" for std path
 #define BCN_POSITION_INTERVAL 1		/* in minute */
