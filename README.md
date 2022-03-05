@@ -3,6 +3,7 @@
  
  Atmega 168/328 with 11.0592 MHz XTAL at 3.3 volts. (Or any 3.3 volts Atmega)
  
+- Support Lora carrier detect and collision avoiding using persistance and slottime, just like standard APRS
 - Compatible with ASCII packet format [LoRa-APRS-tracker](https://github.com/lora-aprs/LoRa_APRS_Tracker) and binary/AX25 format [sh123/esp32_loraprs](https://github.com/sh123/esp32_loraprs) select in project.h
 - Use Mic-E SSID digipeating(25 bytes) or standard path (32 bytes) or no path.
 - Use UBlox GPS at 9600bps.
