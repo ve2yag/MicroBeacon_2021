@@ -39,8 +39,6 @@ nav_t  nav;		// Navigation data
 // RXM ID
 #define RXM_PMREQ 0x41
 
-char aprs_lat[6];	// Extract latitude from NMEA to aprs beacon
-
 /******************************************************
  * FixPosition
  * 
@@ -165,8 +163,6 @@ int nmea_parse(char *str) {
 		str = skip_char(str, 2);
 		nav.second  = natoi(str, 2);
 		str = next_field(str);
-		for(i=0; i<4; i++) aprs_lat[i] = str[i];	  // APRS hack to keep latitude as string.
-		for(i=4; i<6; i++) aprs_lat[i] = str[i+1];
 		nav.latitude  = fix_position(atof(str));
 		str = next_field(str);
 		if(*str=='S') nav.latitude = -nav.latitude;

@@ -9,7 +9,6 @@
 #define NMEA_H_
 
 #include <stdint.h>
-//#include <TimeLib.h>
 
 // NAV MODE
 //----------------
@@ -33,7 +32,6 @@ typedef struct nav_t {
 } nav_t;
 
 extern nav_t nav;
-extern char aprs_lat[6];	// Extract latitude from NMEA to aprs beacon
 
 int natoi(char *s, int n);
 unsigned int htoi (char *ptr);

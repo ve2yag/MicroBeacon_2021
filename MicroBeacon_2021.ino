@@ -118,7 +118,11 @@ void Send_lora_aprs() {
     
     /* DEST CALL */
     dest = strrchr(p, 0);
-    memcpy(dest, aprs_lat, 6);
+    //memcpy(dest, aprs_lat, 6);
+    unsigned int deg = abs((int)nav.latitude);
+    float minute = fabs(nav.latitude - (int)nav.latitude) * 60;
+    unsigned int tenth = (minute - (int)minute) * 100;
+	sprintf(dest, "%02u%02u%02u", deg, (unsigned int)minute, tenth);
  
     /* SET MESSAGE (DESTINATION) */	
     uint8_t message = 1;			// En route
