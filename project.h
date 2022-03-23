@@ -39,6 +39,9 @@
 #define BCN_COMMENT      0    /* Set to 1 for comment transmit */
 #define BCN_COMMENT_TEXT "LorAPRS beacon test."
 
+/* NOKIA DISPLAY */
+#define ENABLE_NOKIA_DISP 1
+
 /* BATTERY ADC CALIBRATION */
 #define BAT_CAL 4400L   // (float)batt_volt * BAT_CAL / 1023  In millivolts
 

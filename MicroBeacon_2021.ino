@@ -46,6 +46,20 @@
 /* LOCAL HEADER */
 #include "project.h"
 
+/* NOKIA 5110 DISPLAY */
+#if ENABLE_NOKIA_DISP==1
+#include <Adafruit_GFX.h>
+#include <Adafruit_PCD8544.h>
+
+// Software SPI (slower updates, more flexible pin options):
+// pin 7 - Serial clock out (SCLK)
+// pin 6 - Serial data out (DIN)
+// pin 5 - Data/Command select (D/C)
+// pin 4 - LCD chip select (CS)
+// pin 3 - LCD reset (RST)
+Adafruit_PCD8544 display = Adafruit_PCD8544(7, 6, 5, 4, 3);
+#endif
+
 /* LORA RADIO MODULE */
 SX1278 lora(SX1278_BW_125_00_KHZ, SX1278_SF_12, SX1278_CR_4_5);
 
@@ -209,6 +223,16 @@ void setup() {
     /* CONFIGURE WATCHDOG FOR 1HZ INTERRUPT */
     Watchdog_setup();
 
+    /* INITIALIZE NOKIA DISPLAY */
+    #if ENABLE_NOKIA_DISP==1
+    display.begin();
+    display.setContrast(75);
+    display.display(); // show splashscreen
+    delay(2000);
+    display.clearDisplay();   // clears the screen and buffer
+    display.println("BOOT");
+  #endif
+
     /* BATTERY VOLTAGE SENSOR */
     analogReference(INTERNAL);
 
@@ -220,7 +244,6 @@ void setup() {
     lora.setFrequency((FREQ * 1000000.0)+FREQ_ERR);   // APRS freq
     lora.setPpmError(PPM_ERR);
     lora.setPower(LORA_POWER);  // dbm (max 20)
-    lora.setSyncword(0x34);
     delay(150);
 }
 
